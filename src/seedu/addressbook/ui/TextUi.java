@@ -8,6 +8,7 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.security.cert.PKIXRevocationChecker.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -116,6 +117,17 @@ public class TextUi {
             out.println(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX));
         }
     }
+    
+    /**
+     * Shows a message to user, if any
+     */
+    public void showToUser(Optional<String> message) {
+    	if (message.isPresent()) {
+			out.println(LINE_PREFIX + message.get().replace("\n", LS + LINE_PREFIX));
+		}
+	}
+    
+    
 
     /**
      * Shows the result of a command execution to the user. Includes additional formatting to demarcate different
@@ -126,7 +138,8 @@ public class TextUi {
         if(resultPersons.isPresent()) {
             showPersonListView(resultPersons.get());
         }
-        showToUser(result.getRelevantFeedback(), DIVIDER);
+        showToUser(result.getRelevantFeedback());
+        showToUser(DIVIDER);
     }
 
     /**

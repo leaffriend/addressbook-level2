@@ -36,8 +36,8 @@ public class CommandResult {
     /**
      * Returns feedback message relevant to the command command result.
      */
-    public String getRelevantFeedback() {
-        return feedbackToUser;
+    public Optional<String> getRelevantFeedback() {
+        return Optional.ofNullable(feedbackToUser);
     }
 
 }
